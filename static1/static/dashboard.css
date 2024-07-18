@@ -1,0 +1,108 @@
+.container1 {
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/static/sunflower.jpg);
+    opacity: 1;
+    position:relative;
+}
+.img-src{
+    width: 60px;
+    height: 60px;
+    position:absolute;
+    left:20px;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    /* position: fixed; */
+}
+
+nav{
+    background-color: #3d0499;
+    opacity: 0.9;
+    color: #fff;
+    height: 65px;
+    width: 100%;
+    font-size: 35px;
+    line-height: 65px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+
+.input-container{
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+    opacity: 0.9;
+}
+.input-container h1{
+    margin-bottom: 50px;
+    font-size: 30px;
+    color: #3d0499;
+    position: relative;
+}
+.input-container h1::after{
+    content:'';
+    width:50px;
+    height:4px;
+    border-radius: 3px;
+    background: #3d0499;
+    position: absolute;
+    bottom:-10px;
+    left:50%;
+    transform:translateX(-50%);
+
+}
+.input-dash{
+    background-color: #eaeaea;
+    margin: 15px 0;
+    border-radius: 4px;
+    align-items: center;
+    display: flex;
+}
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+
+.btn-search{
+    background: #3d0499;
+    color: #fff;
+    height: 40px;
+    border-radius: 10px;
+    width: 35%;
+    border: 0;
+    outline: 0
+}
+.btn-logout{
+    /* background-color: #659904; */
+    color: #fff;
+    position: absolute;
+    right: 1%;
+    height: 30px;
+    /* width: 6%; */
+    font-size: 25px;
+    text-decoration: none;
+
+}
+button.btn-logout {
+    margin-top: 20px;
+    position: absolute;
+}
+
+.nav-items{
+    color: black;
+}
