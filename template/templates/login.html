@@ -1,0 +1,278 @@
+<html>
+    <head>
+        <title>login</title>
+        <style>
+.container {
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-size: cover;
+    /* background-image: url(/static/sunflower.jpg); */
+    opacity:1;
+    position:relative;
+}
+
+.img-src{
+    width: 60px;
+    height: 60px;
+    position:absolute;
+    left:20px;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    /* position: fixed; */
+    
+}
+
+nav{
+    background-color: #3d0499;
+    opacity: 0.9;
+    color: #fff;
+    height: 65px;
+    width: 100%;
+    font-size: 35px;
+    line-height: 65px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+/* .form-box div {
+    display: flex;
+    justify-content: center;
+} */
+
+.form-box {
+    width: 50%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    /* padding: 50px 60px 70px; */
+    text-align: center;
+    opacity: 0.9;
+    padding: 15px;
+}
+.form-box h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #3d0499;
+    position: relative;
+}
+.form-box h1::after{
+    content:'';
+    width:30px;
+    height:4px;
+    border-radius: 3px;
+    background: #3d0499;
+    position: absolute;
+    bottom:-12px;
+    left:50%;
+    transform:translateX(-50%);
+}
+.input-field{
+    background-color: #eaeaea;
+    margin: 15px 0;
+    align-items: center;
+    border-radius: 3px;
+    display: flex;
+    /* flex-direction: row; */
+    max-height: 65px;
+    transition: max-height 0s;
+    overflow: hidden;
+
+}
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+.input-field i{
+    margin-left: 15px;
+    color: #3c3a3a;
+}
+form p{
+    text-align: left;
+    font-size: 15px;
+}
+form p a{
+    text-decoration: none;
+    color: #3d0499;
+
+}
+.btn-field{
+    width: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+}
+
+.btn-field button{
+    flex-basis: 48%;
+    background-color: #3d0499;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    /* transition: background 1s; */
+}
+.input-group{
+     height: 150px;
+}
+/* .btn-field button.disable{
+    background: #eaeaea;
+    color: #555; */
+
+
+#seepassword{
+    margin-left: 85%;
+    color: #3c3a3a;
+}
+#uname{
+    position: relative;
+}
+/* #lbuser{
+    font-size: medium;
+    position: absolute;
+    top: 39%;
+    left: 13%;
+
+}
+#mail{
+    position: relative;
+}
+#lbmail{
+    font-size: medium;
+    position: absolute;
+    top: 39%;
+    left: 13%;
+} */
+
+.btn-logout{
+    /* background-color: #659904; */
+    color: #fff;
+    position: absolute;
+    right: 1%;
+    height: 30px;
+    /* width: 6%; */
+    font-size: medium;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+button.btn-logout {
+    margin-top: 20px;
+    position: absolute;
+}
+
+/* .form__control small {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  } */
+  
+/* .form__control.error small {
+    color: #e74c3c;
+    visibility: visible;
+  } */
+      </style>
+        
+    </head>
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+    <body>
+        <nav  class="nav-bar">
+            <div>
+              <a><img  class="img-src" src="../static/icon.png" alt=" " >BookReview</a>
+              <a class="btn-logout" href="{{ url_for('register')}}">sign up</a>
+            </div>
+        </nav>
+       
+        <div class="container">
+          <div class="form-box">
+            {% if message is not none %}
+            <div role="alert">
+            {{message}}
+            </div>
+            {% endif %}
+            <h1 id="title">Sign In</h1>
+            <form  id="form" onsubmit=" return validation()" action="{{ url_for('login')}}" method="post" >
+              <div class="input-group">
+               
+                <div class="input-field">
+                  <i class="fa-solid fa-envelope"></i>
+                  <input  id="mail" type="email" placeholder="Email" name="mail" >
+                </div>
+                <div id="label-email" style="display: none">
+                  <label id="lbmail" style="color: red;font-size: 12px; display: flex">Email should be filled out</label>
+                </div>
+                <div class="input-field">
+                  <i class="fa-solid fa-lock"></i>
+                  <input id="pass" type="password" placeholder="Password"name=password >
+
+                </div>
+                <label id="lbpass" style="color: red;visibility: hidden;font-size: 12px;display: flex">Password should be filled out</label>
+
+              </div>
+              <div class="btn-field">
+                <button type="submit" id="signinbtn"class="disable">Sign in</button>
+              </div>
+                </form>
+                <script>
+                        signinbtn.onclick=function(){
+                        namefield.style.maxHeight="0";
+                        title.innerHTML=" Sign In";
+                        signupbtn.classList.add("disable");
+                        signinbtn.classList.remove("disable");
+                       }
+                       function validation(){
+                        var uname=document.getElementById("uname");
+                        var password=document.getElementById("pass");
+                        var email=document.getElementById("mail");
+                       // var form=document.getElementById("form");
+                        if(uname.value.trim()=="")
+                        {
+            // alert("enter the name");
+            // document.getElementById("lbuser").style.visibility="visible";
+            document.getElementById("label-user").style.display="block";
+            return false;
+          }
+          else if(email.value.trim()=="")
+          {
+            // alert("enter the email");
+            // document.getElementById("lbmail").style.visibility="visible";
+            document.getElementById("label-email").style.display="block";
+
+            return false;
+          }
+          else if(password.value.trim()=="")
+          {
+            // alert(" enter the password");
+            document.getElementById("lbpass").style.visibility="visible";
+            return false;
+          } 
+          else if(password.value.trim().length<6)
+          {
+            // alert("password too short");
+             document.getElementById("lbpass1").style.visibility="visible";
+            return false;
+          } 
+          else{
+            return true;
+          }
+        }   
+        
+                </script>
+              </div>
+          </div>
+        </div>
+    </body>
+</html>

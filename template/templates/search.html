@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>search</title>
+    <!-- <link src="stylesheet" href="../static/search.css"> -->
+    <style>
+.container3 {
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/static/sunflower.jpg);
+    opacity:  1;
+    position:relative;
+}
+body {
+    overflow: hidden;
+    margin: 0px;
+    /* position: fixed; */
+}
+.img-src{
+    width: 60px;
+    height: 60px;
+    position:absolute;
+    left:20px;
+}
+
+.navbar{
+    /* width: 100%;
+    background-color: blue; */
+    background-color: #3d0499;
+    opacity: 0.9;
+    color: #fff;
+    height: 65px;
+    width: 100%;
+    font-size: 35px;
+    line-height: 65px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+.btn-logout{
+    /* background-color: #659904; */
+    color: #fff;
+    position: absolute;
+    right: 1%;
+    height: 30px;
+    /* width: 6%; */
+    font-size:25px;
+    text-decoration: none;
+}
+
+button.btn-logout {
+    margin-top: 20px;
+    position: absolute;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 40%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr{background-color: #f2f2f2;}
+
+/* #customers tr:hover {background-color: #ddd;} */
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+.result-div{
+    font-size: 30px;
+}
+.card-body{
+    height:500px;
+    overflow:auto;
+    padding-left: 2%;
+}
+    </style>
+</head>
+<nav  class="navbar">
+    <div>
+        <a><img  class="img-src" src="../static/icon.png"  href=" {{ url_for('dashboard') }}"alt=" " >BookReview</a>
+        <a class="btn-logout" href="{{url_for('logout')}}">Logout</a>
+      </div>
+   </nav>
+
+<body>
+    <div class="container3">
+        <div class="card-text">
+            <div class="result-div">
+                Results
+            </div>
+            <div class="card-body" >
+                <table class="table-body" id="customers">
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                    </tr>
+                    {% for result in results %}
+                    <tr>
+                        <td>{{ result[0] }}</td> 
+                        {% set title = result[0] %}
+                        <td><a href="{{ url_for('api',isbn=title)}}">{{ result[1]}}</a></td>
+                        <td>{{ result[2] }}</td>
+                        <td>{{ result[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<html>
+    <head>
+        <title>info</title>
+        <link src="stylesheets" href="../static/info.css">
+        <style>
+   .container4 {
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/static/sunflower.jpg);
+    opacity:  0.9;
+    position:relative;
+}
+body {
+     /* overflow: hidden; */
+    margin: 0px; 
+    /* position: fixed; */
+}
+.img-src{
+    width: 60px;
+    height: 60px;
+    position:absolute;
+    left: -25px;
+}
+
+.nav-bar{
+    /* width: 100%;
+    background-color: blue; */
+    background-color: #3d0499;
+    opacity: 0.9;
+    color: #fff;
+    height: 65px;
+    width: 100%;
+    font-size: 35px;
+    line-height: 65px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+.btn-logout{
+    /* background-color: #659904; */
+    color: #fff;
+    position: absolute;
+    right: 0%;
+    height: 30px;
+    /* width: 6%; */
+    font-size: 25px;
+    text-decoration: none;
+    /* padding-right: 14px; */
+}
+
+button.btn-logout {
+    margin-top: 20px;
+    position: absolute;
+}
+.body{
+  overflow :hidden;
+}
+
+html {
+  overflow: hidden;
+}
+.rev{
+  width: 180px;
+    margin-top: 50px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: 56px;
+    padding: 10px;
+    width: 180%;
+    height: 370px;
+}
+.bnn{
+  padding: 12px;
+    border: 2px solid black;
+    margin: 10px 100px;
+    width: 66%;
+}
+.submit-btn{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex: 100;
+    background: lightblue;
+    font-size: 18px;
+    border-radius: 10px;
+}
+.comment{
+  width:100%;
+  height: 100px;
+
+}
+h1{
+  text-align: center;
+}
+img{
+  width: 69%;
+    height: 59%;
+    padding-left: 53px;
+}
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #09f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+    </style>
+    </head>
+    <nav  class="nav-bar">
+        <div>
+          <a><img  class="img-src" src="../static/icon.png" alt=" " >BookReview</a>
+          <a class="btn-logout" href="{{ url_for('logout')}}">Logout</a>
+        </div>
+       </nav>
+       <body>
+        <div class="container4">
+          <div style="display: flex "
+          >
+            <div>
+              <div  class="bnn" >
+                <img class="card-img-top" src="http://covers.openlibrary.org/b/ISBN/{{ book_info[0] }}-M.jpg" alt="Card image cap">
+                <div>
+                  <p><b>Title:</b>{{ book_info[1]}}</p>
+                  <p><b>Author:</b>{{ book_info[2]}}</p>
+                  <p><b>Year:</b>{{ book_info[3]}}</p>
+                  <p><b>ISBN:</b>{{ book_info[0]}}</p>
+                  <p><b>Goodread Rating:</b>{{ rating }}/5</p> 
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <div class="rev" >
+                  <h1>Review</h1>
+                  
+                    <form action="{{ url_for('info',isbn=book_info[0])}}"  method="post" >
+                      <div class="rating">
+                      <label for="st1">
+                        <input id="st1"  type="radio" name="stars" value="1" />
+                        <span class="icon">★</span>
+                      </label>
+                      <label for="st2">
+                        <input id="st2" type="radio" name="stars" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label for="st3">
+                        <input id="st3"type="radio" name="stars" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>   
+                      </label>
+                      <label for="st4">
+                        <input id="st4"type="radio" name="stars" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label for="st5">
+                        <input  id="st5"type="radio" name="stars" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                    </div>
+                    <br>
+                    
+                    <input class="comment" type="text" name="comment" placeholder="Comment here ..." required>
+                    <br><br>
+                     <button class="submit-btn" type="submit">Submit</button>
+                     <script>
+                     $(':radio').change(function() {
+                     console.log('New star rating: ' + this.value);
+                      });
+                      </script>
+                  </form>
+                  <table id="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Mail</th>
+                            <th> Comment </th>
+                            <th> Rating </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in reviews %}
+                        <tr>
+                            <td> {{ review[0] }} </td>
+                            <td> {{ review[2] }} </td>
+                            <td> {{ review[3] }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                   </table>
+                  </div >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+       </body>
+</html>
+

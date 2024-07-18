@@ -1,0 +1,324 @@
+<html>
+  <head>
+  <title>register</title>
+  <link rel="stylesheet" href="../static/register.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav  class="nav-bar">
+    <div>
+      <a><img  class="img-src" src="../static/icon.png" alt=" " >BookReview</a>
+      <!-- <span>
+       <a  class="menu-items" href="#home" style="font-size: 20px;
+       color: white;">Home</a>
+        <a class="menu-items"href="#favourite"  style="font-size: 20px;
+        color: white;">favourite</a>
+          <a class="menu-items" href="authors.html"  style="font-size: 20px;
+          color: white;">Authors</a>
+          </span>
+          <div class="dropdown-content">
+            <a href="#">Authours</a>
+            <a href="#">Books</a>
+            <a href="#">Recent</a>
+          </div>
+      </ul> -->
+      <a class="btn-logout" href="{{ url_for('login')}}">Sign in</a>
+      
+    </div >
+   </nav>
+  <div class="container">
+    <div class="form-box">
+      {% if message is not none %}
+      <div role="alert">
+        {{message}}
+       </div> 
+       {% endif %}
+      <!-- <a id="title" href="./login.html">Sign Up</a> -->
+      <h1 class="form-box">Sign Up</h1>
+      <div>
+      <form  id="form" onsubmit=" return validation()" action="{{ url_for('register')}}" method="post" >
+        <div class="input-group">
+
+          <div class="input-field" id="namefield">
+            <i class="fa-solid fa-user"></i>
+            <!-- <i  class="fa fa-check-circle ii"></i> -->
+            <!-- <i class="fa fa-exclamation-circle  ii"></i> -->
+            <input  id="uname"type="text" placeholder="Name" name="name" ><br>
+          </div>
+          <div id="label-user" style="display: none">
+          <label id="lbuser" style="color: red;font-size: 12px;display: flex">Username should be filled out</label>
+          </div>
+          <!-- <small class="small-text">errorMessage</small> -->
+
+          <div class="input-field">
+            <i class="fa-solid fa-envelope"></i>
+            <!-- <i  class="fa fa-check-circle ii"></i> -->
+          <!-- <i  class="fa fa-exclamation-circle ii"></i> -->
+            <input  id="mail" type="email" placeholder="Email" name="mail" >
+          </div>
+          <div id="label-email" style="display: none">
+            <label id="lbmail" style="color: red;font-size: 12px; display: flex">Email should be filled out</label>
+          </div>
+          <!-- <small>errorMessage</small> -->
+           
+          <div class="input-field">
+            <i class="fa-solid fa-lock"></i>
+            <!-- <i  class="fa fa-check-circle  ii"></i> -->
+           <!-- <i  class="fa fa-exclamation-circle ii"></i> -->
+            <!-- <i id="seepassword" class="fa-solid fa-eye"></i> -->
+            <input id="pass" type="password" placeholder="Password"name=password autocomplete="off" >
+            <!-- <label id="lbpass1" style="color: red;visibility: hidden;"> password too short</label> -->
+          </div>
+          <label id="lbpass" style="color: red;visibility: hidden;font-size: 12px;display: flex">Password should be filled out</label>
+          <!-- <small>errorMessage</small> -->
+          <!-- <p> <a href="#">Forgot Password!</a></p> -->
+        </div>
+        <div class="btn-field">
+          <button type="submit" id="signupbtn">Sign up</button>
+          <!-- <button type="submit" id="signinbtn"class="disable">Sign in</button> -->
+
+
+        </div> 
+      </form>
+    </div>
+     </div>
+   
+  </div>
+   <script>
+        let signupbtn =document.getElementById("signupbtn");
+        let signinbtn =document.getElementById("signinbtn");
+        let namefield=document.getElementById("namefield");
+        let title=document.getElementById("title");
+        
+        // signinbtn.onclick=function(){
+        //    namefield.style.maxHeight="0";
+        //    title.innerHTML=" Sign In";
+        //    signupbtn.classList.add("disable");
+        //    signinbtn.classList.remove("disable");
+        // }
+        
+        signupbtn.onclick=function(){
+           namefield.style.maxHeight="60px";
+           title.innerHTML=" Sign Up";
+           signupbtn.classList.remove("disable");
+           signinbtn.classList.add("disable");
+        }
+
+        function validation(){
+          var uname=document.getElementById("uname");
+          var password=document.getElementById("pass");
+          var email=document.getElementById("mail");
+          // var form=document.getElementById("form");
+          if(uname.value.trim()=="")
+          {
+            // alert("enter the name");
+            // document.getElementById("lbuser").style.visibility="visible";
+            document.getElementById("label-user").style.display="block";
+            return false;
+          }
+          else if(email.value.trim()=="")
+          {
+            // alert("enter the email");
+            // document.getElementById("lbmail").style.visibility="visible";
+            document.getElementById("label-email").style.display="block";
+
+            return false;
+          }
+          else if(password.value.trim()=="")
+          {
+            // alert(" enter the password");
+            document.getElementById("lbpass").style.visibility="visible";
+            return false;
+          } 
+          else if(password.value.trim().length<6)
+          {
+            // alert("password too short");
+             document.getElementById("lbpass1").style.visibility="visible";
+            return false;
+          } 
+          else{
+            return true;
+          }
+        }   
+          
+        
+   </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- if(uname.value.trim()=="")
+          {
+            // alert("enter the name");
+            document.getElementById("lbuser").style.visibility="visible";
+            return false;
+          }
+          else if(email.value.trim()=="")
+          {
+            // alert("enter the email");
+            document.getElementById("lbmail").style.visibility="visible";
+            return false;
+          }
+          else if(password.value.trim()=="")
+          {
+            // alert(" enter the password");
+            document.getElementById("lbpass").style.visibility="visible";
+            return false;
+          } 
+          else if(password.value.trim().length<6)
+          {
+            // alert("password too short");
+             document.getElementById("lbpass1").style.visibility="visible";
+            return false;
+          } 
+          else{
+            return true;
+          }
+        }  -->
+        <!-- form.addEventListener("sign up","Sign in", e=>
+          {
+            e.preventDefault();
+            checkInputs();
+          });
+
+          function checkInputs(){
+            var usernamevalue= uname.value.trim();
+            var emailvalue= email.value.trim();
+            var passwordvalue= password.value.trim();
+            
+          }
+            
+          if(usernamevalue === ""){
+            setErrorInput(uname,"username annot be blank");}
+            else{
+             setsuccessInput(uname);
+            }
+          
+            if (emailValue === "") {
+              setErrorInput(email, "Email cannot be blanc.");
+             } else {
+             validateEmail(emailValue) && setSuccessInput(email);
+              }  
+              
+              if (passwordValue === "") {
+              setErrorInput(password, "Password connot be blanc.");
+               } else {
+              setSuccessInput(password) && validatePassword(passwordValue);
+              }
+              function setErrorInput(input, errorMessage) {
+              const formControl = input.parentElement;
+             const small = formControl.querySelector("small");
+
+                 small.innerText = errorMessage;
+                formControl.className = "form__control error";
+              }
+
+             function setSuccessInput(input) {
+             const formControl = input.parentElement;
+             formControl.className = "form__control success";
+             }
+
+             function validateEmail(email) {
+            let regular_expressions = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return regular_expressions.test(String(email).toLocaleLowerCase());
+              }
+            function validatePassword(password) {
+           let regular_expressions = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+              return regular_expressions.match(regular_expressions);
+            }  -->
+
+
+
+
+
+
+
+
+
+<!-- if(uname.value.trim()=="")
+          {
+            // alert("enter the name");
+            document.getElementById("lbuser").style.visibility="visible";
+            return false;
+          }
+          else if(email.value.trim()=="")
+          {
+            // alert("enter the email");
+            document.getElementById("lbmail").style.visibility="visible";
+            return false;
+          }
+          else if(password.value.trim()=="")
+          {
+            // alert(" enter the password");
+            document.getElementById("lbpass").style.visibility="visible";
+            return false;
+          } 
+          else if(password.value.trim().length<6)
+          {
+            // alert("password too short");
+             document.getElementById("lbpass1").style.visibility="visible";
+            return false;
+          } 
+          else{
+            return true;
+          }
+        }  -->
+        <!-- form.addEventListener("sign up","Sign in", e=>
+          {
+            e.preventDefault();
+            checkInputs();
+          });
+
+          function checkInputs(){
+            var usernamevalue= uname.value.trim();
+            var emailvalue= email.value.trim();
+            var passwordvalue= password.value.trim();
+            
+          }
+            
+          if(usernamevalue === ""){
+            setErrorInput(uname,"username annot be blank");}
+            else{
+             setsuccessInput(uname);
+            }
+          
+            if (emailValue === "") {
+              setErrorInput(email, "Email cannot be blanc.");
+             } else {
+             validateEmail(emailValue) && setSuccessInput(email);
+              }  
+              
+              if (passwordValue === "") {
+              setErrorInput(password, "Password connot be blanc.");
+               } else {
+              setSuccessInput(password) && validatePassword(passwordValue);
+              }
+              function setErrorInput(input, errorMessage) {
+              const formControl = input.parentElement;
+             const small = formControl.querySelector("small");
+
+                 small.innerText = errorMessage;
+                formControl.className = "form__control error";
+              }
+
+             function setSuccessInput(input) {
+             const formControl = input.parentElement;
+             formControl.className = "form__control success";
+             }
+
+             function validateEmail(email) {
+            let regular_expressions = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return regular_expressions.test(String(email).toLocaleLowerCase());
+              }
+            function validatePassword(password) {
+           let regular_expressions = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+              return regular_expressions.match(regular_expressions);
+            }  -->
